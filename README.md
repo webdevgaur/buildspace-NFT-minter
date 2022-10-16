@@ -11,3 +11,5 @@ REPORT_GAS=true npx hardhat test
 npx hardhat node
 npx hardhat run scripts/deploy.js
 ```
+
+First Contract deployed to: 0x85BB4E4Ed46C161749eCfF9323930973391b4Dd1
