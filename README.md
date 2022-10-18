@@ -16,4 +16,8 @@ First Contract deployed to: 0x85BB4E4Ed46C161749eCfF9323930973391b4Dd1
 
 Second Contract deployed to: 0x470D2d66970c4c063b806376F8Aea3DdC8eCa6b7
 
+Third contract deployed to: 0x676B374349021c24360E30a3fF4f27c40bBD1f21
+
+Fourth contract deployed at: 0x58A805589edEbc90EbAEd698206Ce202B33f5ce4
+
 Metadata debugging: https://testnets-api.opensea.io/asset/<your_contract_address>/<your_token_id>/validate/ 
