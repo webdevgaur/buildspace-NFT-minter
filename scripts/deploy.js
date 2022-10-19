@@ -6,9 +6,13 @@ const main = async () => {
     await nftContract.deployed();
     console.log('Contract deployed to:', nftContract.address);
 
-    let txn = await nftContract.mintThisBitch();
-    await txn.wait();
-    console.log('Minted NFT #0');
+    let txn;
+
+    for (let i = 0; i < 20; i++) {
+        txn = await nftContract.mintThisBitch();
+        await txn.wait();
+        console.log('Minted NFT #', i);
+    }    
 
 }
 

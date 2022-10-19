@@ -20,4 +20,6 @@ Third contract deployed to: 0x676B374349021c24360E30a3fF4f27c40bBD1f21
 
 Fourth contract deployed at: 0x58A805589edEbc90EbAEd698206Ce202B33f5ce4
 
+Fifth contract deployed at: 0x055113EaC37ff89E24503406248318A042DaB168
+
 Metadata debugging: https://testnets-api.opensea.io/asset/<your_contract_address>/<your_token_id>/validate/ 

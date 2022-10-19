@@ -16,7 +16,7 @@ contract MyHumbleNFT is ERC721URIStorage {
     function mintThisBitch() public {
         uint256 newItemId = _tokenId.current();
         _safeMint(msg.sender, newItemId);
-        _setTokenURI(newItemId, "data:application/json;base64,eyJuYW1lIjoiaW1hZ2UgZXhwZXJpbWVudCIsImRlc2NyaXB0aW9uIjoiVHJ5aW5nIHRvIGhvc3QgYW4gaW1hZ2UgZnJvbSBpbWFndXIgdGhpcyB0aW1lIGluc3RlYWQgb2YgSVBGUyIsImltYWdlIjoiaHR0cHM6Ly9pLmltZ3VyLmNvbS9qNUdTYVpiLnBuZyJ9");
+        _setTokenURI(newItemId, "data:application/json;base64,eyJuYW1lIjoiU21vbCBDYXQiLCJkZXNjcmlwdGlvbiI6IlRoaXMgY2F0IGlzIHNvIHNtb2wgaXQncyBjcmF6eS4gSXQgbWlnaHQgYmUgYSBzb2Z0IHRveSEiLCJpbWFnZSI6Imh0dHBzOi8vaS5pbWd1ci5jb20vZEdqRlBSZS5qcGVnIn0");
         console.log('An NFT with the ID of %s has been minted to %s', newItemId, msg.sender);
         _tokenId.increment();
     }
