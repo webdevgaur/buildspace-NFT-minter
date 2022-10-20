@@ -9,8 +9,11 @@ const main = async () => {
     let txn = await nftContract.mintThisBitch();
     await txn.wait();
 
-    // txn = await nftContract.mintThisBitch();
-    // await txn.wait();
+    txn = await nftContract.mintThisBitch();
+    await txn.wait();
+    
+    txn = await nftContract.mintThisBitch();
+    await txn.wait();
 }
 
 const runMain = async () => {
