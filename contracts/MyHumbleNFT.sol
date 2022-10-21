@@ -63,8 +63,9 @@ contract MyHumbleNFT is ERC721URIStorage {
         string memory first = pickRandomFirstWord(newItemId);
         string memory second = pickRandomSecondWord(newItemId);
         string memory third = pickRandomThirdWord(newItemId);
+        string memory combinedWord = string(abi.encodePacked(first,second,third));
 
-        string memory finalSVG = string(abi.encodePacked(baseSvg, first, second, third, "</text></svg>"));
+        string memory finalSVG = string(abi.encodePacked(baseSvg, combinedWord, "</text></svg>"));
 
         console.log('\n-------------------------------');
         console.log(finalSVG);

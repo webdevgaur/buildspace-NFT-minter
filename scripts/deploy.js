@@ -8,11 +8,9 @@ const main = async () => {
 
     let txn;
 
-    for (let i = 0; i < 20; i++) {
-        txn = await nftContract.mintThisBitch();
-        await txn.wait();
-        console.log('Minted NFT #', i);
-    }    
+    txn = await nftContract.mintThisBitch();
+    await txn.wait();
+     
 
 }
 
