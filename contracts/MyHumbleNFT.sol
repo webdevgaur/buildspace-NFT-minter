@@ -67,12 +67,23 @@ contract MyHumbleNFT is ERC721URIStorage {
 
         string memory finalSVG = string(abi.encodePacked(baseSvg, combinedWord, "</text></svg>"));
 
+        string memory json = Base64.encode(
+            abi.encodePacked(
+                '{"name":"', finalSVG, '",',
+                '"description":"A ', third, ' who is', first, ' ', second, '.",',
+                '"image":"data:image/svg+xml;base64,', Base64.encode(bytes(finalSVG)), '"}'
+            )
+        );
+
+        string memory finalTokenURI = string(abi.encodePacked('data:application/json;base64,',json));
+
         console.log('\n-------------------------------');
-        console.log(finalSVG);
+        console.log(finalTokenURI);
         console.log('-------------------------------\n');
 
         _safeMint(msg.sender, newItemId);
-        _setTokenURI(newItemId, tokenURI(newItemId));
+        // Doing this using the method below causes significantly higher gas consumption
+        // _setTokenURI(newItemId, tokenURI(newItemId));
         console.log('An NFT with the ID of %s has been minted to %s', newItemId, msg.sender);
         _tokenIdCounter.increment();
     }
