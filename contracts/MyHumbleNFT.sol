@@ -29,7 +29,8 @@ contract MyHumbleNFT is ERC721URIStorage {
         "Radiologist","Sailor","Tailor","Umpire","Valet","Waiter","Zookeeper","Actor","Baker",
         "Calligrapher","Dentist","Economist","Farmer","Gardener","Harpist"
         ];
-    
+
+    string json;    
 
     constructor() ERC721 ("GoodBoyz", "GDBZ"){
         console.log('Let there be light!');
@@ -67,10 +68,10 @@ contract MyHumbleNFT is ERC721URIStorage {
 
         string memory finalSVG = string(abi.encodePacked(baseSvg, combinedWord, "</text></svg>"));
 
-        string memory json = Base64.encode(
+        json = Base64.encode(
             abi.encodePacked(
-                '{"name":"', finalSVG, '",',
-                '"description":"A ', third, ' who is', first, ' ', second, '.",',
+                '{"name":"', combinedWord, '",',
+                '"description":"A ', third, ' who is ', first, ' ', second, '.",',
                 '"image":"data:image/svg+xml;base64,', Base64.encode(bytes(finalSVG)), '"}'
             )
         );
@@ -83,18 +84,18 @@ contract MyHumbleNFT is ERC721URIStorage {
 
         _safeMint(msg.sender, newItemId);
         // Doing this using the method below causes significantly higher gas consumption
-        // _setTokenURI(newItemId, tokenURI(newItemId));
+        _setTokenURI(newItemId, finalTokenURI);
         console.log('An NFT with the ID of %s has been minted to %s', newItemId, msg.sender);
         _tokenIdCounter.increment();
     }
 
-    function tokenURI(uint256 _tokenId) public view override returns(string memory) {
-        require(_exists(_tokenId));
-        return string(
-            abi.encodePacked(
-                "data:application/json;base64",
-                "eyJuYW1lIjoiRXBpY0xvcmRIYW1idXJnZXIiLCJkZXNjcmlwdGlvbiI6IlZlcnkgbmljZSBORlQiLCJpbWFnZSI6ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIQnlaWE5sY25abFFYTndaV04wVW1GMGFXODlJbmhOYVc1WlRXbHVJRzFsWlhRaUlIWnBaWGRDYjNnOUlqQWdNQ0F6TlRBZ016VXdJajRLSUNBZ0lEeHpkSGxzWlQ0dVltRnpaU0I3SUdacGJHdzZJSGRvYVhSbE95Qm1iMjUwTFdaaGJXbHNlVG9nYzJWeWFXWTdJR1p2Ym5RdGMybDZaVG9nTVRSd2VEc2dmVHd2YzNSNWJHVStDaUFnSUNBOGNtVmpkQ0IzYVdSMGFEMGlNVEF3SlNJZ2FHVnBaMmgwUFNJeE1EQWxJaUJtYVd4c1BTSmliR0ZqYXlJZ0x6NEtJQ0FnSUR4MFpYaDBJSGc5SWpVd0pTSWdlVDBpTlRBbElpQmpiR0Z6Y3owaVltRnpaU0lnWkc5dGFXNWhiblF0WW1GelpXeHBibVU5SW0xcFpHUnNaU0lnZEdWNGRDMWhibU5vYjNJOUltMXBaR1JzWlNJK1JYQnBZMHh2Y21SSVlXMWlkWEpuWlhJOEwzUmxlSFErQ2p3dmMzWm5QZz09In0="
-            )
-            );
-    }
+    // function tokenURI(uint256 _tokenId) public view override returns(string memory) {
+    //     require(_exists(_tokenId));
+    //     return string(
+    //         abi.encodePacked(
+    //             "data:application/json;base64",
+    //             "eyJuYW1lIjoiRXBpY0xvcmRIYW1idXJnZXIiLCJkZXNjcmlwdGlvbiI6IlZlcnkgbmljZSBORlQiLCJpbWFnZSI6ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIQnlaWE5sY25abFFYTndaV04wVW1GMGFXODlJbmhOYVc1WlRXbHVJRzFsWlhRaUlIWnBaWGRDYjNnOUlqQWdNQ0F6TlRBZ016VXdJajRLSUNBZ0lEeHpkSGxzWlQ0dVltRnpaU0I3SUdacGJHdzZJSGRvYVhSbE95Qm1iMjUwTFdaaGJXbHNlVG9nYzJWeWFXWTdJR1p2Ym5RdGMybDZaVG9nTVRSd2VEc2dmVHd2YzNSNWJHVStDaUFnSUNBOGNtVmpkQ0IzYVdSMGFEMGlNVEF3SlNJZ2FHVnBaMmgwUFNJeE1EQWxJaUJtYVd4c1BTSmliR0ZqYXlJZ0x6NEtJQ0FnSUR4MFpYaDBJSGc5SWpVd0pTSWdlVDBpTlRBbElpQmpiR0Z6Y3owaVltRnpaU0lnWkc5dGFXNWhiblF0WW1GelpXeHBibVU5SW0xcFpHUnNaU0lnZEdWNGRDMWhibU5vYjNJOUltMXBaR1JzWlNJK1JYQnBZMHh2Y21SSVlXMWlkWEpuWlhJOEwzUmxlSFErQ2p3dmMzWm5QZz09In0="
+    //         )
+    //         );
+    // }
 }
