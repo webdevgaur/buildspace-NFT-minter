@@ -11,7 +11,6 @@ contract MyHumbleNFT is ERC721URIStorage {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIdCounter;
 
-    string baseSvg = "<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMinYMin meet' viewBox='0 0 350 350'><style>.base { fill: white; font-family: serif; font-size: 24px; }</style><rect width='100%' height='100%' fill='black' /><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'>";
 
     string[] firstWords = [
         "Boldly","Bravely","Brightly","Cheerfully","Deftly","Devotedly","Eagerly","Elegantly","Faithfully",
@@ -30,7 +29,9 @@ contract MyHumbleNFT is ERC721URIStorage {
         "Calligrapher","Dentist","Economist","Farmer","Gardener","Harpist"
         ];
 
-    string json;    
+    string json;
+
+    event NFTMintComplete(address from, uint256 tokenId);
 
     constructor() ERC721 ("GoodBoyz", "GDBZ"){
         console.log('Let there be light!');
@@ -58,7 +59,11 @@ contract MyHumbleNFT is ERC721URIStorage {
         return uint256(keccak256(abi.encodePacked(input)));
     }
 
-    function mintThisBitch() public {
+    function tokensMinted() public view returns(uint256) {
+        return _tokenIdCounter.current();
+    }
+
+    function mintThisBitch(string memory baseSvg) public {
         uint256 newItemId = _tokenIdCounter.current();
 
         string memory first = pickRandomFirstWord(newItemId);
@@ -87,6 +92,7 @@ contract MyHumbleNFT is ERC721URIStorage {
         _setTokenURI(newItemId, finalTokenURI);
         console.log('An NFT with the ID of %s has been minted to %s', newItemId, msg.sender);
         _tokenIdCounter.increment();
+        emit NFTMintComplete(msg.sender, newItemId);
     }
 
     // function tokenURI(uint256 _tokenId) public view override returns(string memory) {
